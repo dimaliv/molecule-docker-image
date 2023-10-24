@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  molecule:
+    build:
+      context: molecule
+      args:
+        ANSIBLE_BASE_IMAGE: ${ANSIBLE_BASE_IMAGE:-dimaliv/ansible}
+        ANSIBLE_BASE_IMAGE_VERSION: ${ANSIBLE_BASE_IMAGE_VERSION:-8}
+        MOLECULE_VERSION: ${MOLECULE_VERSION}
+        BUILDKIT_INLINE_CACHE: ${BUILDKIT_INLINE_CACHE:-1}
