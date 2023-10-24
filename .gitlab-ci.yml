@@ -17,9 +17,11 @@ before_script:
 build-ansible-images:
   stage: build
   script:
-    - export ANSIBLE_BASE_IMAGE_VERSION=${ANSIBLE_BASE_IMAGE_VERSION}
+    - export BUILD_TAG="${MOLECULE_VERSION}-${ANSIBLE_BASE_IMAGE_VERSION}"
+    - export MOLECULE_VERSION=${MOLECULE_VERSION}.*
     - make target=build docker-build
     - make target=build docker-push
   parallel:
     matrix:
-      - ANSIBLE_BASE_IMAGE_VERSION: ['6', '7', '8']
+      - ANSIBLE_BASE_IMAGE_VERSION: ['8']
+        MOLECULE_VERSION: ['6']
